@@ -1,0 +1,23 @@
+import { callAI } from "./aiService.js";
+
+export async function generateWorkflow(userInput) {
+  const prompt = `
+You are an AI Workflow Compiler.
+
+Convert the user intent into a structured JSON workflow.
+
+Rules:
+- Break into clear steps
+- Each step must have: id, action, description
+- Keep it executable
+
+User Input:
+"${userInput}"
+
+Output ONLY JSON:
+`;
+
+  const response = await callAI(prompt);
+
+  return JSON.parse(response);
+}
